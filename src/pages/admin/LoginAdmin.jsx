@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import images from "../assets/images";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Input } from "@nextui-org/react";
 import { toast } from "react-toastify";
+import images from "../../assets/images";
 
-function LoginPage() {
+function LoginAdmin() {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   const [dataLogin, setDataLogin] = useState({
@@ -13,6 +13,7 @@ function LoginPage() {
   })
   const [validasiError, setValidasiError] = useState(false);
   const [passError, setPassError] = useState(false);
+  const navigate = useNavigate()
 
   useEffect(() => {
     console.log('DATA LOGIN', JSON.stringify(dataLogin, null, 2))
@@ -86,13 +87,16 @@ function LoginPage() {
               color={validasiError ? 'default' : 'warning'}
               className="mt-4"
               onClick={
-                () =>
-                  toast.success("Berhasil Login!", {
-                    position: "top-right",
-                    theme: "colored",
-                    hideProgressBar: true,
-                    autoClose: 1000,
-                  })
+                () => {
+                    toast.success("Berhasil Login!", {
+                      position: "top-right",
+                      theme: "colored",
+                      hideProgressBar: true,
+                      autoClose: 1000,
+                    })
+                    navigate('/home')
+
+                }
                 // console.log('email', email)
               }
             >
@@ -105,4 +109,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default LoginAdmin;
